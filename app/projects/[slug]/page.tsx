@@ -10,6 +10,9 @@ type Params = {
   slug: string;
 };
 
+/** Full-bleed marketing graphics that should not be cropped (shown contained). */
+const CONTAIN_COVERS = new Set(["trackora-website"]);
+
 function getProjectCoverClass(slug: string): string {
   if (slug === "ssrc-logistics-website") return "object-cover object-[center_62%]";
   return "object-cover";
@@ -56,6 +59,8 @@ export default async function ProjectDetailsPage({
   const project = PROJECTS.find((item) => item.slug === slug);
   if (!project) notFound();
 
+  const isContainCover = CONTAIN_COVERS.has(project.slug);
+
   return (
     <main className="min-h-screen bg-background pb-20 pt-28 text-foreground">
       <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
@@ -68,17 +73,25 @@ export default async function ProjectDetailsPage({
           </HardLink>
 
           <div className="section-card overflow-hidden rounded-3xl">
-            <div className="relative aspect-[21/9] min-h-[200px] w-full bg-gray-100 dark:bg-zinc-800">
+            <div
+              className={`relative min-h-[200px] w-full ${
+                isContainCover
+                  ? "aspect-[16/9] bg-white dark:bg-zinc-900"
+                  : "aspect-[21/9] bg-gray-100 dark:bg-zinc-800"
+              }`}
+            >
               <Image
                 src={project.coverImage}
                 alt={project.title}
                 fill
-                className={getProjectCoverClass(project.slug)}
+                className={isContainCover ? "object-contain" : getProjectCoverClass(project.slug)}
                 sizes="(max-width: 1024px) 100vw, 896px"
                 priority
                 unoptimized
               />
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/50 to-transparent" aria-hidden />
+              {isContainCover ? null : (
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/50 to-transparent" aria-hidden />
+              )}
             </div>
             <div className="p-6 sm:p-8 lg:p-10">
             <div className="mb-6 flex flex-wrap items-center gap-3">
@@ -155,7 +168,7 @@ export default async function ProjectDetailsPage({
               <a
                 href={project.link}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center gap-2 rounded-xl bg-violet-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-violet-700 dark:hover:bg-violet-500"
               >
                 View Live Project

@@ -7,6 +7,10 @@ export type Note = {
   content: string;
 };
 
+export function getLatestNotes(limit = 3): Note[] {
+  return [...NOTES].sort((a, b) => b.date.localeCompare(a.date)).slice(0, limit);
+}
+
 export const NOTES: Note[] = [
   {
     slug: "structuring-ops-dashboards",

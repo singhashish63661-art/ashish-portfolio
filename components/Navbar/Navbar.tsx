@@ -15,8 +15,10 @@ const ACCENT_STORAGE_KEY = "portfolio_accent_theme";
 
 function linkIsActive(pathname: string, activeSection: string, link: (typeof NAV_LINKS)[number]): boolean {
   if ("href" in link) {
-    if (link.href === "/notes") return pathname === "/notes" || pathname.startsWith("/notes/");
     return pathname === link.href;
+  }
+  if (link.sectionId === "writing" && (pathname === "/notes" || pathname.startsWith("/notes/"))) {
+    return true;
   }
   if (pathname === "/") return activeSection === link.sectionId;
   if (link.sectionId === "portfolio" && pathname.startsWith("/projects")) return true;
@@ -126,7 +128,7 @@ export default function Navbar() {
           </HardLink>
 
           <nav
-            className="hidden min-w-0 flex-1 items-center justify-center gap-x-1 xl:gap-x-2 2xl:gap-x-3 lg:flex"
+            className="hidden min-w-0 flex-1 items-center justify-center gap-x-1 xl:flex xl:gap-x-2 2xl:gap-x-3"
             aria-label="Primary"
           >
             {NAV_LINKS.map((link) => {
@@ -152,7 +154,7 @@ export default function Navbar() {
           </nav>
 
           <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
-            <div className="hidden items-center gap-2 sm:gap-3 lg:flex">
+            <div className="hidden items-center gap-2 sm:gap-3 xl:flex">
               <SectionAnchor
                 sectionId="contact"
                 className="rounded-full bg-violet-600 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-violet-700 sm:px-5 sm:py-2.5 dark:hover:bg-violet-500"
@@ -210,7 +212,7 @@ export default function Navbar() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2 lg:hidden">
+            <div className="flex items-center gap-2 xl:hidden">
               <button
                 type="button"
                 aria-label="Toggle theme"
@@ -278,7 +280,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="fixed inset-x-4 top-[4.5rem] z-40 rounded-2xl border border-gray-200 bg-white p-4 shadow-xl dark:border-white/10 dark:bg-zinc-900 lg:hidden"
+            className="fixed inset-x-4 top-[4.5rem] z-40 rounded-2xl border border-gray-200 bg-white p-4 shadow-xl dark:border-white/10 dark:bg-zinc-900 xl:hidden"
           >
             <div className="flex flex-col gap-1">
               {NAV_LINKS.map((link) => {

@@ -8,15 +8,31 @@ export type StoredAnalyticsEvent = {
 const LOCAL_ANALYTICS_KEY = "portfolio_analytics_events";
 const MAX_LOCAL_ANALYTICS_EVENTS = 300;
 
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
+type AnalyticsWindow = Window & {
+  dataLayer?: Array<Record<string, unknown>>;
+  gtag?: (...args: unknown[]) => void;
+};
+
+/** Sends a GA4 page_view when gtag is loaded (SPA-friendly). */
+export function trackPageView(path: string) {
+  if (typeof window === "undefined") return;
+
+  const win = window as AnalyticsWindow;
+  if (typeof win.gtag === "function" && GA_MEASUREMENT_ID) {
+    win.gtag("config", GA_MEASUREMENT_ID, { page_path: path });
+  }
+
+  trackEvent("page_view", { path });
+}
+
 export function trackEvent(event: string, payload: AnalyticsPayload = {}) {
   if (typeof window === "undefined") return;
 
   const data = { event, ...payload };
 
-  const win = window as Window & {
-    dataLayer?: Array<Record<string, unknown>>;
-    gtag?: (...args: unknown[]) => void;
-  };
+  const win = window as AnalyticsWindow;
 
   if (typeof win.gtag === "function") {
     win.gtag("event", event, payload);

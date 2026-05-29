@@ -1,6 +1,6 @@
 "use client";
 
-import { PROJECTS, type PortfolioTab } from "../../lib/data";
+import { PROJECTS, type PortfolioTab } from "@/lib/data";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useMemo, useState, type MouseEvent } from "react";

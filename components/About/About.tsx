@@ -87,7 +87,7 @@ export default function About() {
                 <div className="flex items-center gap-2.5 rounded-xl border border-gray-200/90 bg-white/95 px-3.5 py-2.5 shadow-md backdrop-blur-sm dark:border-white/10 dark:bg-zinc-900/95">
                   <FlaskConical className="h-5 w-5 shrink-0 text-orange-500 dark:text-orange-400" strokeWidth={2} />
                   <span className="text-[11px] font-bold leading-tight text-gray-900 dark:text-white sm:text-xs">
-                    Research & Development
+                    GPS & IVMS Software
                   </span>
                 </div>
               </div>

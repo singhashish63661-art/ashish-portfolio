@@ -60,7 +60,7 @@ describe("POST /api/chat", () => {
     expect(body.type).toBeDefined();
   });
 
-  it("answers blood group from backup personal details intent", async () => {
+  it("does not reveal blood group in backup responses", async () => {
     const req = new Request("http://localhost/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -71,9 +71,24 @@ describe("POST /api/chat", () => {
     const body = (await res.json()) as { reply: string; type: string };
 
     expect(res.status).toBe(200);
-    expect(body.reply.toLowerCase()).toContain("blood group");
-    expect(body.reply).toContain("O+");
+    expect(body.reply).not.toContain("O+");
+    expect(body.reply.toLowerCase()).toMatch(/skills|projects|contact|resume/);
     expect(body.type).toBe("text");
+  });
+
+  it("returns project-preview with featured project data", async () => {
+    const req = new Request("http://localhost/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: "show me your projects" }),
+    });
+
+    const res = await POST(req);
+    const body = (await res.json()) as { reply: string; type: string; data?: { slug: string } };
+
+    expect(res.status).toBe(200);
+    expect(body.type).toBe("project-preview");
+    expect(body.data?.slug).toBeDefined();
   });
 
   it("answers years of experience for typoed query", async () => {
@@ -106,6 +121,23 @@ describe("POST /api/chat", () => {
     expect(body.reply).toContain("LinkedIn");
     expect(body.reply).toContain("GitHub");
     expect(body.type).toBe("socials");
+  });
+
+  it("accepts optional conversation history in the payload", async () => {
+    const req = new Request("http://localhost/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: "tell me more",
+        history: [
+          { role: "user", content: "show projects" },
+          { role: "assistant", content: "Here are featured projects." },
+        ],
+      }),
+    });
+
+    const res = await POST(req);
+    expect(res.status).toBe(200);
   });
 
   it("returns 429 after crossing rate limit in the same window", async () => {

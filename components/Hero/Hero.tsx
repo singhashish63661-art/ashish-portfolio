@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Box, Download, PenTool } from "lucide-react";
-import { PERSONAL_INFO, RESUME_FILE, SITE_HIGHLIGHTS } from "../../lib/data";
-import DigitalClock from "../DigitalClock/DigitalClock";
+import { PERSONAL_INFO, RESUME_FILE, SITE_HIGHLIGHTS } from "@/lib/data";
+import DigitalClock from "@/components/DigitalClock/DigitalClock";
 import { trackEvent } from "@/lib/analytics";
 
 export default function Hero() {

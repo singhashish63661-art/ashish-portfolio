@@ -18,6 +18,8 @@ Then update `.env.local` with:
 - `GEMINI_API_KEY`
 - `UPSTASH_REDIS_REST_URL` (optional, recommended for production)
 - `UPSTASH_REDIS_REST_TOKEN` (optional, recommended for production)
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` (optional, Google Analytics 4)
+- `NEXT_PUBLIC_SITE_URL` (optional, production canonical URL)
 
 3. Run the development server:
 
@@ -47,7 +49,9 @@ GitHub Actions workflow is configured at `.github/workflows/ci.yml` and runs on 
 
 ## Notes
 
-- The chatbot API route is at `app/api/chat/route.ts`.
+- Home page includes **Testimonials** and **Latest notes** sections; full notes archive is at `/notes`.
+- The chatbot API route is at `app/api/chat/route.ts`. It accepts optional `history` for multi-turn context.
+- Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` to enable Google Analytics 4 (`trackEvent` and page views).
 - Chat rate limiting uses Upstash Redis when `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are set.
 - If Upstash env vars are missing, it falls back to in-memory limiting (best-effort for single-instance runtime).
 

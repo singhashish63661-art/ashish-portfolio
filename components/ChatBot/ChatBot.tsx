@@ -1,16 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { X, Send, Trash2, Download, Mail, Phone, Sparkles, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import { X, Send, Trash2, Download, Mail, Phone, Sparkles, MessageCircle, ArrowUpRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
-import { PERSONAL_INFO, RESUME_FILE } from "../../lib/data";
+import { PERSONAL_INFO, RESUME_FILE, type Project } from "@/lib/data";
+import HardLink from "@/components/HardLink/HardLink";
+import { MAX_HISTORY_TURNS } from "@/lib/chat-history";
+import { trackEvent } from "@/lib/analytics";
 
 type ChatMessage = {
   id: string;
   role: "user" | "bot";
   text: string;
   type?: "text" | "calendar" | "resume" | "socials" | "project-preview";
+  project?: Project;
   time: string;
 };
 
@@ -89,6 +94,7 @@ export default function ChatBot() {
           role: m.role as ChatMessage["role"],
           text: m.text as string,
           type: m.type as ChatMessage["type"],
+          project: m.project as Project | undefined,
           time: m.time as string,
         }))
         .slice(-MAX_STORED_MESSAGES);
@@ -169,9 +175,21 @@ export default function ChatBot() {
     }
   };
 
+  const buildHistoryPayload = (currentMessages: ChatMessage[]) => {
+    return currentMessages
+      .filter((m) => m.text !== CHAT_WELCOME_TEXT)
+      .map((m) => ({
+        role: m.role === "user" ? ("user" as const) : ("assistant" as const),
+        content: m.text,
+      }))
+      .slice(-MAX_HISTORY_TURNS);
+  };
+
   const handleSend = async (text: string) => {
     const trimmed = text.trim();
     if (!trimmed) return;
+
+    const historyPayload = buildHistoryPayload(messages);
 
     setMessages((prev) => [...prev, { id: makeId(), role: "user", text: trimmed, time: getCurrentTime() }]);
     setInput("");
@@ -181,17 +199,49 @@ export default function ChatBot() {
       const response = await fetch(`${window.location.origin}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed }),
+        body: JSON.stringify({ message: trimmed, history: historyPayload }),
       });
 
-      if (!response.ok) {
-        throw new Error("Chat request failed");
+      const data = (await response.json().catch(() => ({}))) as {
+        reply?: string;
+        error?: string;
+        type?: ChatMessage["type"];
+        data?: Project;
+      };
+
+      if (response.status === 429) {
+        trackEvent("chat_rate_limited");
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: makeId(),
+            role: "bot",
+            text:
+              data.error ??
+              "You are sending messages too quickly. Please wait about a minute and try again.",
+            type: "text",
+            time: getCurrentTime(),
+          },
+        ]);
+        return;
       }
 
-      const data = (await response.json()) as { reply: string; type?: ChatMessage["type"] };
+      if (!response.ok || typeof data.reply !== "string") {
+        throw new Error(data.error ?? "Chat request failed");
+      }
+
+      const reply = data.reply;
+
       setMessages((prev) => [
         ...prev,
-        { id: makeId(), role: "bot", text: data.reply, type: data.type ?? "text", time: getCurrentTime() },
+        {
+          id: makeId(),
+          role: "bot",
+          text: reply,
+          type: data.type ?? "text",
+          project: data.type === "project-preview" ? data.data : undefined,
+          time: getCurrentTime(),
+        },
       ]);
     } catch (error) {
       console.error("Chat request failed:", error);
@@ -372,6 +422,44 @@ export default function ChatBot() {
                             <Download className="h-3.5 w-3.5" />
                             Download Resume
                           </a>
+                        ) : null}
+
+                        {message.type === "project-preview" && message.project ? (
+                          <div className="mt-3 overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700">
+                            <div className="relative aspect-[16/9] w-full bg-gray-100 dark:bg-zinc-800">
+                              <Image
+                                src={message.project.coverImage}
+                                alt={message.project.title}
+                                fill
+                                className="object-cover"
+                                sizes="360px"
+                              />
+                            </div>
+                            <div className="space-y-2 p-3">
+                              <p className="text-sm font-bold text-gray-900 dark:text-white">{message.project.title}</p>
+                              <p className="line-clamp-2 text-xs text-gray-600 dark:text-gray-400">{message.project.desc}</p>
+                              <div className="flex flex-wrap gap-2">
+                                <HardLink
+                                  href={`/projects/${message.project.slug}`}
+                                  className="inline-flex items-center gap-1 rounded-lg bg-violet-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-violet-700"
+                                >
+                                  Case study
+                                  <ArrowUpRight className="h-3.5 w-3.5" />
+                                </HardLink>
+                                {message.project.link ? (
+                                  <a
+                                    href={message.project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 rounded-lg border border-violet-200 px-3 py-1.5 text-xs font-semibold text-violet-700 transition hover:bg-violet-50 dark:border-violet-500/40 dark:text-violet-300 dark:hover:bg-violet-950/40"
+                                  >
+                                    Live site
+                                    <ArrowUpRight className="h-3.5 w-3.5" />
+                                  </a>
+                                ) : null}
+                              </div>
+                            </div>
+                          </div>
                         ) : null}
                       </div>
 

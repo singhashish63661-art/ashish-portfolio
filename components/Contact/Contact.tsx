@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PERSONAL_INFO } from "../../lib/data";
+import { PERSONAL_INFO } from "@/lib/data";
 import { Mail, Phone, MessageCircle, Send, Loader2, CheckCircle, AlertCircle, MapPin, ExternalLink } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 

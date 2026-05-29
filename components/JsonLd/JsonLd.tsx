@@ -24,7 +24,7 @@ const websiteSchema = {
   name: `${PERSONAL_INFO.name} — Portfolio`,
   url: SITE_URL,
   description:
-    "Professional portfolio: research and development, operations dashboards, client websites, certifications, and contact.",
+    "Professional portfolio of Ashish Singh, co-founder of Trackora — GPS & IVMS fleet tracking software, operations dashboards, and client websites.",
   author: {
     "@type": "Person",
     name: PERSONAL_INFO.name,

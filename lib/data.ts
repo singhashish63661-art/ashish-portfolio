@@ -33,8 +33,8 @@ export type Testimonial = {
 
 export const PERSONAL_INFO = {
   name: "Ashish Singh",
-  title: "Operations Manager",
-  subtitle: "Helping teams ship dashboards, internal tools, and client websites faster",
+  title: "Co-Founder, Trackora Solutions",
+  subtitle: "Building Trackora — GPS & IVMS fleet tracking software — and practical web solutions for operations teams",
   email: "singhashish63661@gmail.com",
   phone: "+91 7206617045",
   location: "Trackor Technology Pvt Ltd, Sector 33, Gurugram, Haryana, India",
@@ -47,9 +47,9 @@ export const PERSONAL_INFO = {
   },
   /** Short line for the hero — keep brief; full story lives in `about` */
   heroIntro:
-    "I work with operations teams and growing businesses to build practical web solutions, automate reporting, and improve delivery speed without adding process overhead.",
+    "I co-founded Trackora, a GPS & IVMS fleet-tracking platform with its own in-house software. I work across operations, product, and web delivery — turning real operational problems into tools teams actually use.",
   about:
-    "I am a problem solver at heart, working at the intersection of technology, operations, and innovation. I enjoy building solutions from scratch, optimizing processes, and turning ideas into real-world products. My goal is to create systems that are not only efficient but also scalable and user-focused.",
+    "I am a problem solver at heart and co-founder of Trackora, where we build GPS and IVMS fleet-tracking software in-house. Working at the intersection of technology, operations, and product, I enjoy building solutions from scratch, optimizing processes, and turning ideas into real-world products that are efficient, scalable, and user-focused.",
   /** Shown in About — add or reorder rows anytime */
   personalDetails: [
     { label: "Date of birth", value: "31-10-2004" },
@@ -72,15 +72,16 @@ export const PERSONAL_INFO = {
   ],
 };
 
+/** Most recent role first. Overlapping periods reflect concurrent or transition roles. */
 export const EXPERIENCE = [
   {
-    company: "Trackor Technology Pvt Ltd",
+    company: "Trackora Solutions Pvt Ltd",
     logo: "/company-logos/trackor-logo.png",
-    role: "Operations Manager",
+    role: "Co-Founder",
     period: "25 Apr 2025 – Present",
     desc: [
-      "Managing day-to-day operations and coordinating teams for smooth service delivery.",
-      "Driving process improvements, reporting discipline, and faster issue resolution across operations."
+      "Co-founded Trackora, a GPS & IVMS solution provider with its own in-house tracking software (trackora.tech).",
+      "Leading operations, product direction, and delivery for fleet tracking and video telematics customers."
     ]
   },
   {
@@ -133,6 +134,25 @@ export const SKILLS = [
 ];
 
 export const PROJECTS: Project[] = [
+  {
+    slug: "trackora-website",
+    title: "Trackora Website",
+    tech: "Trackora Solutions | 2026",
+    desc: "Marketing and product website for Trackora — a GPS & IVMS solution provider with its own in-house tracking software. Built with Astro and React for fast loads and clear product storytelling.",
+    link: "https://www.trackora.tech",
+    coverImage: "/project-covers/trackora-website.png",
+    category: "Company Website",
+    portfolioTab: "Websites",
+    stack: ["Astro", "React", "Responsive UI", "Performance-first Frontend"],
+    problem: "Trackora needed a fast, credible web presence to present its GPS and IVMS offerings and in-house software to fleet customers.",
+    solution: "Built a performance-focused site using Astro for static-first delivery and React for interactive sections, presenting products and capabilities clearly.",
+    impact: [
+      "Established Trackora's online identity as a GPS & IVMS provider",
+      "Improved load speed with Astro's static-first rendering",
+      "Made product and solution information easy to explore",
+    ],
+    myRole: "Co-founder and build lead: site architecture, Astro + React implementation, content structure, and launch.",
+  },
   {
     slug: "accidental-data-monitoring-dashboard",
     title: "Accidental Data Monitoring Dashboard",
@@ -273,10 +293,7 @@ export const SITE_HIGHLIGHTS = [
 /** @deprecated Use CERTIFICATIONS — kept for any legacy imports */
 export const ACHIEVEMENTS = CERTIFICATIONS;
 
-/**
- * Optional reference quotes for future use (e.g. a testimonials section).
- * Replace with approved names and wording before publishing as endorsements.
- */
+/** Endorsements shown in the Testimonials section on the home page. */
 export const TESTIMONIALS: Testimonial[] = [
   {
     name: "sumit kumar choudhary.",

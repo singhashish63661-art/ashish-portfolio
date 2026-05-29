@@ -6,11 +6,11 @@ export type NavLink =
 export const NAV_LINKS: NavLink[] = [
   { label: "Home", sectionId: "home" },
   { label: "About", sectionId: "about" },
-  { label: "Education", sectionId: "education" },
   { label: "Experience", sectionId: "experience" },
-  { label: "Certifications", sectionId: "certifications" },
-  { label: "Notes", href: "/notes" },
+  { label: "Skills", sectionId: "skills" },
   { label: "Portfolio", sectionId: "portfolio" },
+  { label: "Notes", sectionId: "writing" },
+  { label: "Reviews", sectionId: "testimonials" },
   { label: "Contact", sectionId: "contact" },
 ];
 
