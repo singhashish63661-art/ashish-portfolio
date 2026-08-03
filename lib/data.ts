@@ -33,23 +33,23 @@ export type Testimonial = {
 
 export const PERSONAL_INFO = {
   name: "Ashish Singh",
-  title: "Co-Founder, Trackora Solutions",
-  subtitle: "Building Trackora — GPS & IVMS fleet tracking software — and practical web solutions for operations teams",
+  title: "Operations & Research & Development Professional",
+  subtitle: "Logistics technology, fleet management, and SaaS solutions.",
   email: "singhashish63661@gmail.com",
   phone: "+91 7206617045",
-  location: "Trackor Technology Pvt Ltd, Sector 33, Gurugram, Haryana, India",
+  location: "Sector 33, Gurugram, Haryana, India",
   /** Embedded map (Contact section). Query-based Google Maps embed — no API key. Update if you relocate. */
   map: {
     embedUrl:
-      "https://www.google.com/maps?q=Trackor+Technology+Pvt+Ltd+Sector+33+Gurugram+Haryana+India&output=embed&z=13&hl=en",
+      "https://www.google.com/maps?q=Sector+33+Gurugram+Haryana+India&output=embed&z=13&hl=en",
     openUrl:
-      "https://www.google.com/maps/search/?api=1&query=Trackor+Technology+Pvt+Ltd+Sector+33+Gurugram+Haryana+India",
+      "https://www.google.com/maps/search/?api=1&query=Sector+33+Gurugram+Haryana+India",
   },
   /** Short line for the hero — keep brief; full story lives in `about` */
   heroIntro:
-    "I co-founded Trackora, a GPS & IVMS fleet-tracking platform with its own in-house software. I work across operations, product, and web delivery — turning real operational problems into tools teams actually use.",
+    "Operations & Research & Development professional with a background in Computer Applications and experience in logistics technology, fleet management, and SaaS solutions.",
   about:
-    "I am a problem solver at heart and co-founder of Trackora, where we build GPS and IVMS fleet-tracking software in-house. Working at the intersection of technology, operations, and product, I enjoy building solutions from scratch, optimizing processes, and turning ideas into real-world products that are efficient, scalable, and user-focused.",
+    "I specialize in process optimization, data analytics, and building digital products that solve real-world business challenges. I enjoy transforming ideas into scalable solutions using React.js, SQL, Power BI, and modern web technologies.",
   /** Shown in About — add or reorder rows anytime */
   personalDetails: [
     { label: "Date of birth", value: "31-10-2004" },
@@ -74,16 +74,6 @@ export const PERSONAL_INFO = {
 
 /** Most recent role first. Overlapping periods reflect concurrent or transition roles. */
 export const EXPERIENCE = [
-  {
-    company: "Trackora Solutions Pvt Ltd",
-    logo: "/company-logos/trackor-logo.png",
-    role: "Co-Founder",
-    period: "25 Apr 2025 – Present",
-    desc: [
-      "Co-founded Trackora, a GPS & IVMS solution provider with its own in-house tracking software (trackora.tech).",
-      "Leading operations, product direction, and delivery for fleet tracking and video telematics customers."
-    ]
-  },
   {
     company: "SSRC Logistics Pvt Ltd",
     logo: "/company-logos/ssrc-badge.png",
@@ -134,25 +124,6 @@ export const SKILLS = [
 ];
 
 export const PROJECTS: Project[] = [
-  {
-    slug: "trackora-website",
-    title: "Trackora Website",
-    tech: "Trackora Solutions | 2026",
-    desc: "Marketing and product website for Trackora — a GPS & IVMS solution provider with its own in-house tracking software. Built with Astro and React for fast loads and clear product storytelling.",
-    link: "https://www.trackora.tech",
-    coverImage: "/project-covers/trackora-website.png",
-    category: "Company Website",
-    portfolioTab: "Websites",
-    stack: ["Astro", "React", "Responsive UI", "Performance-first Frontend"],
-    problem: "Trackora needed a fast, credible web presence to present its GPS and IVMS offerings and in-house software to fleet customers.",
-    solution: "Built a performance-focused site using Astro for static-first delivery and React for interactive sections, presenting products and capabilities clearly.",
-    impact: [
-      "Established Trackora's online identity as a GPS & IVMS provider",
-      "Improved load speed with Astro's static-first rendering",
-      "Made product and solution information easy to explore",
-    ],
-    myRole: "Co-founder and build lead: site architecture, Astro + React implementation, content structure, and launch.",
-  },
   {
     slug: "accidental-data-monitoring-dashboard",
     title: "Accidental Data Monitoring Dashboard",

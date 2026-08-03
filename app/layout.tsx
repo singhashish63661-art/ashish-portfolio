@@ -16,14 +16,11 @@ export const metadata: Metadata = {
     template: "%s | Ashish Singh",
   },
   description:
-    "Ashish Singh — co-founder of Trackora (GPS & IVMS fleet tracking software) and builder of dashboards and client websites. Portfolio: projects, experience, certifications, notes, and contact.",
+    "Ashish Singh — product and web builder focused on dashboards, operations tooling, and client websites. Portfolio: projects, experience, certifications, notes, and contact.",
   keywords: [
     "Ashish Singh",
     "Co-Founder",
-    "Trackora",
-    "GPS tracking",
-    "IVMS",
-    "fleet management",
+    "product",
     "operations",
     "dashboards",
     "React",

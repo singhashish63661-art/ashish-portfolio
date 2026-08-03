@@ -11,7 +11,7 @@ type Params = {
 };
 
 /** Full-bleed marketing graphics that should not be cropped (shown contained). */
-const CONTAIN_COVERS = new Set(["trackora-website"]);
+const CONTAIN_COVERS = new Set<string>();
 
 function getProjectCoverClass(slug: string): string {
   if (slug === "ssrc-logistics-website") return "object-cover object-[center_62%]";

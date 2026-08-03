@@ -416,7 +416,8 @@ export default function ChatBot() {
                         {message.type === "resume" ? (
                           <a
                             href={RESUME_FILE}
-                            download
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="mt-3 inline-flex items-center gap-2 rounded-lg border border-violet-200 bg-violet-50 px-3 py-2 text-xs font-semibold text-violet-700 transition hover:bg-violet-100 dark:border-violet-500/40 dark:bg-violet-950/30 dark:text-violet-200"
                           >
                             <Download className="h-3.5 w-3.5" />

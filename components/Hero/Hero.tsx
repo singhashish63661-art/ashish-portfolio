@@ -101,7 +101,8 @@ export default function Hero() {
             <div className="mt-8 flex flex-col items-center gap-6 sm:mt-10 lg:items-start">
               <a
                 href={RESUME_FILE}
-                download
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => trackEvent("cta_resume_download_click", { location: "hero" })}
                 className="inline-flex items-center gap-2 text-sm font-bold text-gray-800 underline-offset-4 hover:underline dark:text-gray-200"
               >
