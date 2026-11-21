@@ -55,6 +55,7 @@ Most profile content must be edited in `lib/data.ts`, not hardcoded in component
 - Education: `EDUCATION`
 - Certifications: `CERTIFICATIONS`
 
+<<<<<<< HEAD
 Homepage hero and About copy come from `PERSONAL_INFO` (`title`, `subtitle`, `heroIntro`, and `about`); keep them aligned with the current role.
 
 Experience entries are displayed newest first. Add company logos to `public/company-logos/` and use the matching public path in the entry. The current role is Fleet Operations Specialist at Green SM Pvt Ltd India, starting Oct 2026.
@@ -68,6 +69,14 @@ When adding a project:
 - Add the live website URL to `link` when available
 
 The Trackora Solutions Pvt. Ltd. website project links to `https://www.trackora.tech/` and uses `public/project-covers/trackora-website.png`.
+=======
+When adding a project:
+
+- Add a unique `slug`
+- Add real `impact` bullets (avoid placeholders)
+- Put cover in `public/project-covers/`
+- Set `coverImage` to that exact path
+>>>>>>> dd489bce36ea3abc32d096e95b0d593643a44191
 
 ## 6) UI and Layout Standards
 

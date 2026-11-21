@@ -33,8 +33,13 @@ export type Testimonial = {
 
 export const PERSONAL_INFO = {
   name: "Ashish Singh",
+<<<<<<< HEAD
   title: "Fleet Operations Specialist | Logistics & Technology Professional",
   subtitle: "Fleet operations, logistics technology, and SaaS solutions.",
+=======
+  title: "Operations & Research & Development Professional",
+  subtitle: "Logistics technology, fleet management, and SaaS solutions.",
+>>>>>>> dd489bce36ea3abc32d096e95b0d593643a44191
   email: "singhashish63661@gmail.com",
   phone: "+91 7206617045",
   location: "Sector 33, Gurugram, Haryana, India",
@@ -47,9 +52,15 @@ export const PERSONAL_INFO = {
   },
   /** Short line for the hero — keep brief; full story lives in `about` */
   heroIntro:
+<<<<<<< HEAD
     "Fleet Operations Specialist at Green SM Pvt Ltd India, managing end-to-end fleet operation performance, with experience in logistics technology, data analytics, and SaaS solutions.",
   about:
     "I manage end-to-end fleet operation performance at Green SM Pvt Ltd India. My experience also spans process optimization, data analytics, and building digital products that solve real-world business challenges using React.js, SQL, Power BI, and modern web technologies.",
+=======
+    "Operations & Research & Development professional with a background in Computer Applications and experience in logistics technology, fleet management, and SaaS solutions.",
+  about:
+    "I specialize in process optimization, data analytics, and building digital products that solve real-world business challenges. I enjoy transforming ideas into scalable solutions using React.js, SQL, Power BI, and modern web technologies.",
+>>>>>>> dd489bce36ea3abc32d096e95b0d593643a44191
   /** Shown in About — add or reorder rows anytime */
   personalDetails: [
     { label: "Date of birth", value: "31-10-2004" },
@@ -75,6 +86,7 @@ export const PERSONAL_INFO = {
 /** Most recent role first. Overlapping periods reflect concurrent or transition roles. */
 export const EXPERIENCE = [
   {
+<<<<<<< HEAD
     company: "Green SM Pvt Ltd India",
     logo: "/company-logos/green-sm.png",
     role: "Fleet Operations Specialist",
@@ -84,6 +96,8 @@ export const EXPERIENCE = [
     ]
   },
   {
+=======
+>>>>>>> dd489bce36ea3abc32d096e95b0d593643a44191
     company: "SSRC Logistics Pvt Ltd",
     logo: "/company-logos/ssrc-badge.png",
     role: "Research & Development Specialist",
@@ -134,6 +148,7 @@ export const SKILLS = [
 
 export const PROJECTS: Project[] = [
   {
+<<<<<<< HEAD
     slug: "trackora-solutions-website",
     title: "Trackora Solutions Pvt. Ltd. Website",
     tech: "Fleet Management | Company Website",
@@ -152,6 +167,8 @@ export const PROJECTS: Project[] = [
     myRole: "Developed and delivered the company website for Trackora Solutions Pvt. Ltd.",
   },
   {
+=======
+>>>>>>> dd489bce36ea3abc32d096e95b0d593643a44191
     slug: "accidental-data-monitoring-dashboard",
     title: "Accidental Data Monitoring Dashboard",
     tech: "Gurugram | Feb 2025",
